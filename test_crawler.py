@@ -37,15 +37,15 @@ class TestCrawler(unittest.TestCase):
         page_result = Fetcher(self.root, self.test_app_store).fetch()
         if page_result[1]:
             self.assertGreaterEqual(page_result[0], 40)
-        
+
         # After extracting app info the cound of csv file must increase by 1.
         # It requires to iterated through every line and hold the count.
-        with open(self.test_app_store, "rb") as fobj: 
+        with open(self.test_app_store, "rb") as fobj:
             reader = csv.reader(fobj)
             count_before_add = sum(1 for r in reader)
 
-        Fetcher(self.app_link, self.test_app_store).fetch(with_app_meta=True)    
-        
+        Fetcher(self.app_link, self.test_app_store).fetch(with_app_meta=True)
+
         with open(self.test_app_store, "rb") as fobj:
             reader = csv.reader(fobj)
             count_after_add = sum(1 for r in reader)
